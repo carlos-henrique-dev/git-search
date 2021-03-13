@@ -1,0 +1,7 @@
+@use './common.scss' as common;
+
+.container {
+  @include common.defaultDisplay;
+  background-color: #202040;
+  min-height: 100vh;
+}
