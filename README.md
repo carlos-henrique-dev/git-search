@@ -4,7 +4,7 @@
 Webapp para busca de usuários do github e visualização dos seus repositórios desenvolvido em ``React``.
 
 ## Online no netlify
-[Clique aqui para acessar o projeto no netlify](https://romantic-elion-6824a7.netlify.app/)
+[Clique aqui para acessar o projeto no netlify](https://elegant-noether-f6ea15.netlify.app/)
 
 
 ## Rodando o projeto
