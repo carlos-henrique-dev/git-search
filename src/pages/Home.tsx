@@ -3,19 +3,18 @@ import { getuser } from "../api/user";
 import SearchBar from "../components/SearchBar";
 import Layout from "../components/shared/Layout";
 import UserDetails from "../components/UserDetails";
-import UserRepos from "../components/UserRepos";
-import UserStarredRepos from "../components/UserStarredRepos";
+import ReposList from "../components/ReposList";
 
 function Home() {
   const [searchResults, setSearchResult] = useState<null[] | any[]>([]);
   const [loading, setLoading] = useState(false);
   const [showRepos, setShowRepos] = useState(false);
-  const [showStarredRepos, setShowStarredRepos] = useState(false);
+  const [reposList, setRepos] = useState([]);
+  const [alertMessage, setAlertMessage] = useState("Nenhum repositório para mostrar");
 
   function handleSearch(query: string) {
     setSearchResult([]);
     setShowRepos(false);
-    setShowStarredRepos(false);
     setLoading(true);
 
     getuser(query)
@@ -29,12 +28,15 @@ function Home() {
   }
 
   function handleShowRepos() {
-    setShowRepos(!showRepos);
-    setShowStarredRepos(false);
+    setShowRepos(true);
+    setAlertMessage("Este usuário não possui nenhum repositório");
+    setRepos(searchResults[1]);
   }
+
   function handleShowStarredRepos() {
-    setShowRepos(false);
-    setShowStarredRepos(!showStarredRepos);
+    setShowRepos(true);
+    setAlertMessage("Este usuário não curtiu nenhum repositório");
+    setRepos(searchResults[2]);
   }
 
   return (
@@ -50,8 +52,7 @@ function Home() {
             onShowStarredRepos={handleShowStarredRepos}
           />
         )}
-        {showRepos && <UserRepos loading={loading} data={searchResults[1]} />}
-        {showStarredRepos && <UserStarredRepos loading={loading} data={searchResults[2]} />}
+        {showRepos && <ReposList data={reposList} message={alertMessage} />}
       </div>
     </Layout>
   );

@@ -41,7 +41,9 @@ export default function UserDetails({ data, onShowRepos, onShowStarredRepos }: P
         </div>
       </div>
       <div className="actions">
-        <button onClick={onShowRepos}>Repositórios do usuário</button>
+        <button onClick={onShowRepos} data-testid="show-user-repos">
+          Repositórios do usuário
+        </button>
         <button onClick={onShowStarredRepos}>Repositórios curtidos pelo usuário</button>
       </div>
     </>
