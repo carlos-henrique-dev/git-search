@@ -15,23 +15,23 @@
     text-align: center;
     font-size: 20px;
     box-sizing: border-box;
-    color: #bbbbbb;
+    color: common.$gray;
 
     &::placeholder {
-      color: #bbbbbb;
+      color: common.$gray;
       opacity: 1;
     }
 
     &:-ms-input-placeholder {
-      color: #bbbbbb;
+      color: common.$gray;
     }
 
     &::-ms-input-placeholder {
-      color: #bbbbbb;
+      color: common.$gray;
     }
 
     &:focus {
-      border: 2px solid #ff6363;
+      border: 2px solid common.$red;
     }
   }
 
@@ -44,15 +44,15 @@
     border-radius: 10px;
     border: none;
     outline: none;
-    background-color: #ff6363;
+    background-color: common.$red;
     cursor: pointer;
     transition: all 0.3s;
-    color: #fff;
+    color: common.$white;
     font-size: 20px;
 
     &:disabled {
       cursor: auto;
-      background-color: #bbbbbb;
+      background-color: common.$gray;
     }
 
     &:active {

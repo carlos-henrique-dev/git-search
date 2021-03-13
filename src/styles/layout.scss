@@ -3,6 +3,6 @@
 .container {
   @include common.defaultDisplay;
   justify-content: flex-start;
-  background-color: #202040;
+  background-color: common.$background;
   min-height: 100vh;
 }

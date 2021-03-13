@@ -3,12 +3,12 @@
 .not-found {
   @include common.defaultDisplay;
   margin-top: 50px;
-  color: white;
+  color: common.$white;
 
   i {
     font-size: 60px;
     margin-bottom: 10px;
-    color: #ffbd69;
+    color: common.$yellow;
   }
 }
 
@@ -18,7 +18,7 @@
   margin-top: 30px;
   width: 100%;
   max-width: 500px;
-  border: 1px solid #ff6363;
+  border: 1px solid common.$red;
   border-radius: 10px;
   padding: 20px 5px;
 
@@ -37,7 +37,7 @@
       margin-top: 10px;
       font-weight: bolder;
       text-decoration: underline;
-      text-decoration-color: #ffbd69;
+      text-decoration-color: common.$yellow;
     }
 
     span {

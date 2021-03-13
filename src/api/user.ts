@@ -15,12 +15,10 @@ function fetchData(url: string) {
     });
 }
 
+const baseUrl = "https://api.github.com/users";
+
 export function getuser(username: string) {
-  const urls = [
-    `https://api.github.com/users/${username}`,
-    `https://api.github.com/users/${username}/repos`,
-    `https://api.github.com/users/${username}/starred`,
-  ];
+  const urls = [`${baseUrl}/${username}`, `${baseUrl}/${username}/repos`, `${baseUrl}/${username}/starred`];
 
   const promises = urls.map(fetchData);
 

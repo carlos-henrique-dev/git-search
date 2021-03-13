@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import AlertMessage from "./shared/AlertMessage";
 
 type Props = {
-  onShowRepos: () => void;
-  onShowStarredRepos: () => void;
+  onShowRepos?: () => void;
+  onShowStarredRepos?: () => void;
   data: {
-    searchResult: any;
-    message: string;
+    searchResult: any | null;
+    message: string | null;
   };
 };
 
@@ -29,7 +29,7 @@ export default function UserDetails({ data, onShowRepos, onShowStarredRepos }: P
 
   return (
     <>
-      <div className="details-container">
+      <div className="details-container" data-testid="user-details">
         <div className="user">
           <img src={avatarUrl} alt="user github profile avatar" onError={onError} />
           <a href={searchResult.url}>{searchResult.name !== null ? searchResult.name : searchResult.login}</a>
