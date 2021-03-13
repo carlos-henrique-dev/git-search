@@ -1,22 +1,26 @@
 import { useState } from "react";
 import { getuser } from "../api/user";
-import SearchField from "../components/SearchField";
+import SearchBar from "../components/SearchBar";
 import Layout from "../components/shared/Layout";
 import UserDetails from "../components/UserDetails";
 import UserRepos from "../components/UserRepos";
 import UserStarredRepos from "../components/UserStarredRepos";
 
 function Home() {
-  const [searchResults, showSearchResult] = useState<null[] | any[]>([null, null, null]);
+  const [searchResults, setSearchResult] = useState<null[] | any[]>([]);
   const [loading, setLoading] = useState(false);
   const [showRepos, setShowRepos] = useState(false);
   const [showStarredRepos, setShowStarredRepos] = useState(false);
 
   function handleSearch(query: string) {
+    setSearchResult([]);
+    setShowRepos(false);
+    setShowStarredRepos(false);
     setLoading(true);
+
     getuser(query)
       .then((result: any) => {
-        showSearchResult(result);
+        setSearchResult(result);
         setLoading(false);
       })
       .catch((err) => {
@@ -38,16 +42,16 @@ function Home() {
       <div className="home-container">
         <h1>GIT SEARCH</h1>
         <h4>Busque por um usuário do github e veja seus repositórios</h4>
-        <SearchField handleSearch={handleSearch} loading={loading} />
-
-        {/*  <UserDetails
-          loading={loading}
-          data={searchResults[0]}
-          onShowRepos={handleShowRepos}
-          onShowStarredRepos={handleShowStarredRepos}
-        />
+        <SearchBar handleSearch={handleSearch} loading={loading} />
+        {searchResults[0] && (
+          <UserDetails
+            data={searchResults[0]}
+            onShowRepos={handleShowRepos}
+            onShowStarredRepos={handleShowStarredRepos}
+          />
+        )}
         {showRepos && <UserRepos loading={loading} data={searchResults[1]} />}
-        {showStarredRepos && <UserStarredRepos loading={loading} data={searchResults[2]} />} */}
+        {showStarredRepos && <UserStarredRepos loading={loading} data={searchResults[2]} />}
       </div>
     </Layout>
   );

@@ -1,0 +1,43 @@
+@use '../common.scss' as common;
+
+.repos-grid {
+  width: 100%;
+  grid-template-columns: repeat(auto-fill, 230px);
+  grid-gap: 1rem;
+  display: grid;
+  justify-content: center;
+  padding: 20px 0 0;
+
+  .card {
+    @include common.defaultDisplay;
+    justify-content: space-between;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    transition: all 0.5s;
+
+    .name {
+      font-weight: bolder;
+      color: white;
+      text-align: center;
+    }
+
+    .description {
+      font-weight: lighter;
+      font-size: 12px;
+      color: white;
+      text-align: justify;
+      margin: 10px 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: #ff6363;
+    }
+
+    &:hover {
+      border: 1px solid #ff6363;
+      transform: scale(1.05);
+    }
+  }
+}

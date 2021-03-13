@@ -1,31 +1,49 @@
+import { useEffect, useState } from "react";
+import AlertMessage from "./shared/AlertMessage";
+
 type Props = {
-  loading: boolean;
   onShowRepos: () => void;
   onShowStarredRepos: () => void;
   data: {
-    searchResult: object;
+    searchResult: any;
     message: string;
   };
 };
 
-export default function UserDetails({ loading, data, onShowRepos, onShowStarredRepos }: Props) {
-  if (!loading && !data) {
-    return null;
-  }
+export default function UserDetails({ data, onShowRepos, onShowStarredRepos }: Props) {
+  const { searchResult, message } = data;
 
-  if (loading) {
-    return <div>Carregando</div>;
-  }
+  const [avatarUrl, setAvatarUrl] = useState("");
 
-  if (!loading && !data?.searchResult && data.message) {
-    return <div>{data.message}</div>;
+  useEffect(() => {
+    if (searchResult !== null) {
+      setAvatarUrl(searchResult.avatar_url);
+    }
+  }, [searchResult]);
+
+  const onError = () => setAvatarUrl("/avatar.png");
+
+  if (!searchResult) {
+    return <AlertMessage message={message} />;
   }
 
   return (
-    <div>
-      <button onClick={onShowRepos}>Repositórios do usuário</button>
-      <button onClick={onShowStarredRepos}>Repositórios curtidos pelo usuário</button>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+    <>
+      <div className="details-container">
+        <div className="user">
+          <img src={avatarUrl} alt="user github profile avatar" onError={onError} />
+          <a href={searchResult.url}>{searchResult.name !== null ? searchResult.name : searchResult.login}</a>
+          <span>{searchResult.bio}</span>
+        </div>
+        <div className="info">
+          <span>Seguidores: {searchResult.followers}</span>
+          <span>Seguindo: {searchResult.following}</span>
+        </div>
+      </div>
+      <div className="actions">
+        <button onClick={onShowRepos}>Repositórios do usuário</button>
+        <button onClick={onShowStarredRepos}>Repositórios curtidos pelo usuário</button>
+      </div>
+    </>
   );
 }

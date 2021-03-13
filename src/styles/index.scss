@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-
-@import "./layout.scss";
-@import "./home.scss";
+@use './components/index.scss';
+@use "./layout.scss";
+@use "./home.scss";
 
 html,
 body {

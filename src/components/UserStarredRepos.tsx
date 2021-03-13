@@ -1,27 +1,30 @@
+import AlertMessage from "./shared/AlertMessage";
+
 type Props = {
   loading: boolean;
-  data: {
-    searchResult: object;
-    message: string;
-  };
+  data: any;
 };
 
 export default function UserStarredRepos({ loading, data }: Props) {
-  if (!loading && !data) {
-    return null;
-  }
-
-  if (loading) {
-    return <div>Carregando</div>;
-  }
-
-  if (!loading && !data?.searchResult && data.message) {
-    return <div>{data.message}</div>;
+  if (data?.searchResult.length === 0) {
+    return <AlertMessage message="Este usuário não curtiu nenhum repositório" />;
   }
 
   return (
-    <div>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+    <div className="repos-grid">
+      {data.searchResult.map((repo: any) => {
+        return (
+          <div className="card">
+            <span className="name">{repo.name}</span>
+            <span className="description">
+              {repo.description !== null ? repo.description : "Este repositório não tem descrição"}
+            </span>
+            <a href={repo.html_url} target="_blank" rel="noreferrer">
+              Abrir no Github
+            </a>
+          </div>
+        );
+      })}
     </div>
   );
 }

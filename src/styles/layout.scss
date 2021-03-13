@@ -2,6 +2,7 @@
 
 .container {
   @include common.defaultDisplay;
+  justify-content: flex-start;
   background-color: #202040;
   min-height: 100vh;
 }

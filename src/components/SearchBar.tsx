@@ -5,7 +5,7 @@ type Props = {
   loading: boolean;
 };
 
-export default function SearchField({ handleSearch, loading }: Props) {
+export default function SearchBar({ handleSearch, loading }: Props) {
   const [query, setQuery] = useState("");
 
   function onChange(e: any) {
